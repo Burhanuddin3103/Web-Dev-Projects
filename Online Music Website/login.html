@@ -1,0 +1,120 @@
+<html>
+
+<head>
+  <title>Login Page</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
+
+    * {
+      font-family: Ubuntu;
+    }
+
+    :root {
+      --accent-color: greenyellow;
+      --accent-background-color: rgba(255, 145, 0, 0);
+      width: 70%;
+      margin-left: 200px;
+      
+    }
+
+    body {
+      background-image: url('Images/w1.jpg');
+      background-attachment: fixed;
+      background-size: cover;
+
+     /* background-image: repeating-linear-gradient(
+        45deg,
+        rgb(238, 111, 255),
+        rgb(52, 226, 145),
+        yellow
+      );*/
+    }
+
+    input[type="text"], input[type="password"] {
+      width: 120%;
+      height: 40px;
+    }
+
+    .login-card {
+      margin-left: 12%;
+      margin-right: 12%;
+      margin-top: -15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      margin-left: 300px;
+      font-size: 2.0em;
+      transform: translateY(50%);
+    }
+
+    .login-btn {
+      margin-bottom: 2em;
+      border-radius: 2em;
+      font-size: 1em;
+
+      background: linear-gradient(to right, #002468 0%, #a49cca 100%);
+      border: none;
+      /* text-decoration: underline; */
+      width: 120%;
+    }
+  </style>
+</head>
+
+<body>
+  <span class="login-card">
+    <span style="background-color: var(--accent-background-color);">
+      <span>
+        <form action="./login.php" method="GET">
+          <br><br>
+          <label>Email</label> <br>
+          <input type="text" placeholder="rushikesh@gmail.com" name="email" id="email">
+          <span id="email_error" style="color: rgb(255, 178, 149); font-size: medium;"></span>
+          <br><br>
+          
+          <!-- <center>OR <br></center>
+          <label>Username</label> <br>
+          <input type="text" placeholder="Ishgar14"> <br>
+          
+          <hr> -->
+          
+          <label>Password</label> <br>
+          <input type="password" placeholder="qwerty" name="password" id="password">
+          <span id="password_error" style="color: rgb(255, 178, 149); font-size: medium;"></span>
+          <br><br>
+          <!-- <a style="text-decoration: underline; font-size: medium;">Forgot Password?</a> <br> -->
+          <span style="font-size: medium;">Don't have an account?</span>
+          <a href="./register.html" style="font-size: medium;">Sign up!</a> <br>
+          <input type="checkbox"> Remember me? <br><br>
+          <button class="login-btn" onclick="redirect_to_genres()">Login</button>
+        </form>
+      </span> <br> <br>
+    </span>
+  </span>
+
+  <script>
+    function redirect_to_genres() {
+      const email = document.getElementById('email');
+      const email_error = document.getElementById('email_error');
+      
+      const password = document.getElementById('password');
+      const password_error = document.getElementById('password_error');
+
+      if (!email.value.match(/[\w\d]+@\w+(\.\w+)+/g))
+        email_error.innerText = "Please enter a valid email!";
+      else email_error.innerText = "";
+
+      if(!password.value)
+        password_error.innerText = "Please type your password";
+      else 
+        password_error.innerText = "";
+
+      if(!(email_error.innerText || password_error.innerText))
+        // window.location.href = './genre.html';
+        window.location.href = `./login.php?email=${email.value}&password=${password.value}`;
+    }
+  </script>
+</body>
+
+</html>
