@@ -1,0 +1,69 @@
+:root {
+    --accent-color: greenyellow;
+    --accent-background-color: greenyellow;
+}
+
+nav {
+    margin-top: 30px;
+    margin-right: 10px;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    height: 2em;
+}
+
+nav a {
+    padding-right: 1em;
+    text-decoration: solid;
+    color: rgb(0, 26, 255);
+}
+
+nav a:hover {
+    color: var(--accent-background-color);
+}
+
+p {
+    margin-top: 30px;
+    margin-right: 10px;
+    text-align: end;
+    color: red;
+}
+
+body {
+    background-image: url('./img/c9.jpeg');
+    background-attachment: fixed;
+    background-size: cover;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -5px;
+}
+
+.full-content {
+    margin-left: 500px;
+    color: var(--accent-color); 
+    width: 35%;
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    height: 8in;
+}
+
+.central-text {
+    margin-left: 12%;
+    margin-right: 12%;
+    color: var(--accent-color); 
+    background-color: var(--accent-background-color);
+    width: 35%;
+}
+
+.get-started-btn {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-size: 2em;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--accent-color);
+    text-decoration: underline;
+}

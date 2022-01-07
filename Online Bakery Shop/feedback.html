@@ -1,0 +1,36 @@
+<html>
+    <nav>
+        <a href="./home.html">Home</a>
+    </nav>
+    <head>  
+        <link rel="stylesheet" href="./feedback.css">
+    </head>
+    <body>
+        <h1>Feedback</h1>
+                    
+        <center>
+            <form action="/WT-Project/feedback.php" method="post">
+            <div class="inp">
+              <div class="words">Name * </div>   
+            <input id="name" margin-left = "20px" placeholder="Name" type="text" Required="required"><br><br>
+        </div>
+            <div class="inp">
+                <div class="words">Email * </div>
+
+            <input id="email" placeholder="Email" type="text" Required="required"><br><br>
+        </div>
+            <div class="inp">
+                <div class="words">Phone *</div>
+            <input id="phone" placeholder="Phone Number" type="text" Required="required"><br><br>
+            </div>
+            <div class="inp">
+                <div> Feedback *</div>
+            <textarea id="feedback" placeholder="Your Feedback..." rows="4" cols="20" Required="required" ></textarea><br><br> </div>
+
+            <button class="send_btn" onclick="window.href.location='./home.html'" type="submit">Submit</button>
+            </form>
+        </center>
+
+    </body>
+
+</html>

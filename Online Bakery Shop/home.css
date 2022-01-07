@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Charmonman");
+
+* {
+  font-family: 'Charmonman';
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
+a {
+  font-size: 20px;
+  text-decoration: none;
+  margin: 10px;
+  color: black;
+}
+
+a:hover {
+  color: gray;
+  text-decoration: underline pink;
+}
+
+nav {
+  display: flex;
+  justify-content: start;
+  color: black;
+  background-color: white ;
+
+}
+.cart{
+margin-left: 1300px ;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 35px;
+}
+
+h1 {
+  background-color: #ffffff;
+  color: palevioletred;
+}
+
+i {
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 60px;
+  right: 65px;
+}
+
+body {
+  background-color: #ffffff;
+  background-size: 110% 110%;
+  background-image: url('./img/c7.jpeg');
+}
+
+main {
+  width: 1440px;
+}
+
+.music {
+  width: 200px;
+  height: 200px;
+  border: 1px solid #333333;
+  display: inline-block;
+  margin-top: 50px;
+  margin-right: 40px;
+  vertical-align: top;
+  position: relative;
+}
+
+.music::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.covers {
+  background-image: url("./genre_logos/cover.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+p {
+  position: absolute;
+  bottom: -50px;
+  width: 100%;
+}
+
+.cakes{
+display: flex;
+flex-direction: row;
+}
+
+.cakel{
+  background-color: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+
+  margin-left: 250px;
+
+}
+
+.caker{
+  background-color: #ffffff;
+padding: 5%;
+  display: flex;
+  flex-direction: column;
+
+  margin-left: 200px;
+
+
+}
+
+.cake{
+  margin-top: 50px;
+  
+}
+
+.name{
+  margin-top: 5px;
+
+  font-size: 20px;
+  color : black
+
+}
+.price{
+  margin-top: 5px;
+
+  font-size: 20px;
+  color: red;
+}
+.button{
+  margin-top: 10px;
+  color: black;
+  background-color: pink;
+  border-radius: 5px;
+  border-color: #ffffff;
+  height: 30px;
+  width: 100px;
+}
+
+.button2{
+  margin-top: 20px;
+  color: black;
+  font-size: 20px;
+  background-color: pink;
+  border-radius: 5px;
+  border-color: #ffffff;
+  height: 40px;
+  width: 200px;
+}

@@ -1,0 +1,241 @@
+<html>
+    <head>
+        <title>Sign Up</title>
+
+        <style>
+@import url("https://fonts.googleapis.com/css2?family=Charmonman");
+
+            * {
+            font-family: 'Charmonman';
+            }
+
+            body {
+                background-image: url('./img/c9.jpeg');
+                background-attachment: fixed;
+                
+                background-size: cover;
+                /*background-image: repeating-linear-gradient(-45deg, 
+                    rgb(78, 245, 209) 10%,
+                    rgba(240, 74, 185, 0.521) 25%
+                );*/
+            }
+
+            .center {
+                display: inline-block;
+                justify-content: center;
+                align-items: center;
+
+            }
+
+            .center p {
+                text-align: left;
+                font-size: larger;
+            }
+
+            .error {
+                text-align: left;
+                font-size: medium;
+                color: tomato;
+            }
+
+            input {
+                outline: 5px;
+                border: 3px solid rgb(255, 255, 255);
+                border-radius: .3em;
+                font-size: medium;
+            }
+
+            .submit-btn {
+                border-radius: 1in;
+                font-size: 2em;
+                color: greenyellow;
+                padding: 0;
+                border: none;
+                background: none;
+                width: 20%;
+            }
+
+            .submit-btn:hover {
+                color: red;
+            }
+
+            p{
+                color: greenyellow;
+            }
+        </style>
+    </head>
+
+    <body>
+        <center>
+            <p style="font-size: .6in;">
+                Sign up 
+            </p>
+
+            <div >
+                <form action="/WT-Project/register.php" method="post">
+                <div class="center">
+                    <p>First Name :</p>
+                    <span><input type="search" name="firstname" id="firstname" placeholder="Enter your first name" autocomplete="off" onkeyup="validate_names()"></span>
+                    <div class="error" name="error" id="firstname_error"></div>
+                </div> <br>
+
+                <div class="center">
+                    <p>Last Name :</p>
+                    <span><input type="search" name="lastname" id="lastname" placeholder="Enter your last name" autocomplete="off" onkeyup="validate_names()"></span>
+                    <div class="error" name="error" id="lastname_error"></div>
+                </div> <br>
+
+                <div class="center">
+                    <p>Email :</p>
+                    <span><input type="search" name="email" id="email" placeholder="Enter your email" autocomplete="off" onkeyup="validate_email()"></span>
+                    <div class="error" name="error" id="email_error"></div>
+                </div> <br>
+
+                <div class="center">
+                    <p>Confirm Email</p>
+                    <span><input type="search" id="confirm_email" autocomplete="off" onkeyup="validate_confirm_email()" placeholder="Enter your email again"></span>
+                    <div class="error" name="error" id="confirm_email_error"></div>
+                </div> <br>
+
+                <div class="center">
+                    <p>Password</p>
+                    <span><input type="password" name="password" id="password" onkeyup="validate_password()" placeholder="Password"></span>
+                    <div class="error" name="error" id="pass_error"></div>
+                </div> <br>
+
+                <div class="center">
+                    <p>Date Of Birth</p>
+                    <input type="date" name="DOB" id="DOB" onclick="validate_dob()">
+                    <div class="error" id="dob_error"></div>
+                </div> <br><br>
+                
+                <button class="submit-btn" onclick="validate()" type="submit">Sign up!</button>
+            </form>
+            </div>
+
+        </center>
+
+        <script>
+            function validate() {
+                const errors = document.getElementsByName('error');
+
+                if( 
+                    validate_names()         ||
+                    validate_email()         ||
+                    validate_confirm_email() ||
+                    validate_password()      ||
+                    validate_username()      ||
+                    validate_gender()        ||
+                    validate_dob()
+                ){
+                    console.log("There are errors!");
+                    return "error";
+                }
+                else {
+                    window.location.href = "./home.html"
+                }
+            }
+
+            function validate_names() {
+                const firstname = document.getElementById('firstname');
+                const ferror = document.getElementById('firstname_error');
+
+                if (!firstname.value.match(/^[a-zA-Z]+$/g))
+                    ferror.innerText = "Please enter a valid name!";
+                else ferror.innerText = "";
+
+                const lastname = document.getElementById('lastname');
+                const lerror = document.getElementById('firstname_error');
+
+                if (!lastname.value.match(/^[a-zA-Z]+$/g))
+                    lerror.innerText = "Please enter a valid name!";
+                else lerror.innerText = "";
+
+                return ferror.innerText || lerror.innerText;
+            }
+
+            function validate_email() {
+                const email = document.getElementById('email');
+                const error = document.getElementById('email_error');
+
+                if (!email.value.match(/[\w\d]+@\w+(\.\w+)+/g))
+                    error.innerText = "Please enter a valid email!";
+                else error.innerText = "";
+                return error.innerText;
+            }
+
+            function validate_confirm_email() {
+                const email = document.getElementById('email');
+                const confirm_email = document.getElementById('confirm_email');
+                const error = document.getElementById('confirm_email_error');
+
+                if (email.value != confirm_email.value)
+                    error.innerText = "The emails are not same!";
+                else error.innerText = "";
+                return error.innerText;
+            }
+
+            function validate_password() {
+                const password = document.getElementById('password');
+                const error = document.getElementById('pass_error');
+
+                if(!password.value.match(/[\w\d@\.,'"]{6,}/g))
+                    error.innerText = "Enter a stronger password!";
+                else
+                    error.innerText = "";
+                    return error.innerText;
+            }
+
+            function validate_username() {
+                const password = document.getElementById('username');
+                const error = document.getElementById('username_error');
+
+                if(!password.value.match(/^[a-zA-Z]\w+$/g))
+                    error.innerText = "Username should start with a letter and should not have special characters";
+                else
+                    error.innerText = "";
+                    return error.innerText;
+            }
+
+            function validate_gender() {
+                const gender = document.getElementsByName('gender');
+                const error = document.getElementById('gender_error');
+                let valid = false;
+                for (g of gender){
+                    if(g.checked) {
+                        valid = true;
+                        break;
+                    }
+                }
+
+                if(valid) error.innerText = "";
+                else error.innerText = "Please select your gender";
+                return error.innerText;
+            }
+
+            function validate_dob() {
+                const dob = document.getElementById('DOB');
+                const error = document.getElementById('dob_error');
+
+                const age = (date) => 2021 - Number(date.split('-')[0]);
+
+                const valid_age = (date) => {
+                    const a = age(date);
+                    return !(a > 70 || a < 13);
+                }
+
+                if (!dob.value) {
+                    error.innerText = "Enter your date of birth";
+                }
+                else if (!valid_age(dob.value)) {
+                    if (age(dob.value) < 13)
+                        error.innerText = "Too young for SapceX!";
+                    else if (age(dob.value) > 70)
+                        error.innerText = "Too old for SpaceX";
+                }
+                else error.innerText = "";
+                return error.innerText;
+            }
+        </script>
+    </body>
+</html>
