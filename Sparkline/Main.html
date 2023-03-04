@@ -50,7 +50,7 @@
 
       label 
       {
-        display: block;
+        display: inline-block;
         margin-bottom: 10px;
         font-weight: bold;
         color: #333;
@@ -71,9 +71,10 @@
       input[type="radio"] 
       {
         margin-right: 10px;
+        align-items: center;
       }
 
-      button
+      button 
       {
         padding: 10px 20px;
         background-color: #ff9900;
@@ -84,6 +85,7 @@
         cursor: pointer;
         text-transform: uppercase;
         transition: background-color 0.3s ease;
+        align-items: center;
       }
 
       button:hover 
@@ -127,6 +129,14 @@
         <h1>SPARKLINE</h1>
       </header>
       <form id="my-form">
+        <label for="Operator"> Operator Name: </label>
+        <select id="Operator">
+          <option value="NA"> </option>
+          <option value="name1">Name1</option>
+          <option value="name2">Name2</option>
+          <option value="name3">Name3</option>
+        </select>
+        <br><br><br>
         <label for="Project Code"> Project Code: </label>
         <select id="Project Code">
           <option value="NA"> </option>
@@ -134,7 +144,7 @@
           <option value="Code2">Code2</option>
           <option value="Code3">Code3</option>
         </select>
-        <br><br>
+        <br><br><br>
         <label for="Tunnel"> Tunnel: </label>
         <select id="Tunnel">
           <option value="NA"> </option>
@@ -142,19 +152,18 @@
           <option value="B">B</option>
           <option value="C">C</option>
         </select>
-        <br><br>
-
+        <br><br></br>
         <label for="option1"> L-Angle:</label>
-        <input type="radio" id="option1" name="Options" value="L-Angle"><br>
+        <input type="radio" id="option1" name="Options" value="L-Angle">
 
         <label for="option2"> Panel:</label>
-        <input type="radio" id="option2" name="Options" value="Panel"><br>
+        <input type="radio" id="option2" name="Options" value="Panel"><br><br>
 
         <label for="option3"> 2D:</label>
-        <input type="radio" id="option3" name="Options" value="2D"><br>
+        <input type="radio" id="option3" name="Options" value="2D">
 
         <label for="option4"> 3D:</label>
-        <input type="radio" id="option4" name="Options" value="3D"><br>
+        <input type="radio" id="option4" name="Options" value="3D"><br><br>
 
         <label for="option5"> Finish Weld:</label>
         <input type="radio" id="option5" name="Options" value="Finish Weld"><br><br>
