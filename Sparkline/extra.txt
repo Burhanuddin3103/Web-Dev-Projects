@@ -1,0 +1,47 @@
+<label for="input-field">Input Field:</label>
+        <input type="text" id="input-field" name="entry.1078477103"><br><br>
+
+let previousValues = {};
+      function submitForm() 
+      {
+        var xhttp = new XMLHttpRequest();
+
+        const codeInput = document.getElementById('input-field');
+        const optionInput = document.querySelector('input[name="entry.1213033535"]:checked');
+        
+        const previouscodes = previousValues['code'] || [];
+        const previouscodeoptions = previousValues['code-option'] || {};
+        const previousoptions = previouscodeoptions[codeInput.value] || [];
+
+        if (previousoptions.length > 0 && previousoptions[previousoptions.length - 1] === 'Hold' && optionInput.value === 'Stop') 
+        {
+          alert('Project Code under Hold. Please release first!!');
+          return;
+        }
+        
+        previouscodes.push(codeInput.value);
+        previousValues['code'] = previouscodes;
+        
+        if (!previouscodeoptions[codeInput.value]) 
+        {
+          previouscodeoptions[codeInput.value] = [];
+        }
+        
+        previouscodeoptions[codeInput.value].push(optionInput.value);
+        previousValues['code-option'] = previouscodeoptions;
+
+
+        xhttp.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNBvOB1CXOI5zZ6NwJYUSOQlkhLAPJfLTF2J5HgVgPpPei0w/formResponse", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("entry.1078477103=" + 
+                    encodeURIComponent(document.getElementById("input-field").value) + 
+                    "&entry.1213033535=" + 
+                    encodeURIComponent(document.querySelector('input[name="entry.1213033535"]:checked').value) + 
+                    "&entry.1540913178=" + 
+                    encodeURIComponent(document.getElementById("dropdown-menu").value));
+        
+
+        alert("Form Submitted!!");
+        document.getElementById("my-form").reset();
+        return false;
+      }
