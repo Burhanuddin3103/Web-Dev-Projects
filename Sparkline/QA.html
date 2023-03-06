@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sparkline Data Input</title>
+    <style>
+      body 
+      {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        background-color: #f2f2f2;
+      }
+
+      header 
+      {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .page-content 
+      {
+        margin: auto;
+        max-width: 500px;
+        padding: 20px; 
+        background-color: #f0f0f0;
+        border: 1px solid #ccc; 
+        text-align: center;
+      }
+
+      h1 
+      {
+        margin: 0;
+      }
+
+      form 
+      {
+        margin: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-size: 18px;
+      }
+
+      label 
+      {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"] 
+      {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #333;
+        background-color: #f2f2f2;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="radio"] 
+      {
+        margin-right: 10px;
+      }
+
+      button 
+      {
+        padding: 10px 20px;
+        background-color: #ff9900;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+        align-items: center;
+      }
+
+      button:hover 
+      {
+        background-color: #e68a00;
+      }
+    </style>
+    <script>
+      let previousValues = {};
+      function submitForm() 
+      {
+        var xhttp = new XMLHttpRequest();
+
+        const codeInput = document.getElementById('input-field');
+        const optionInput = document.querySelector('input[name="entry.1213033535"]:checked');
+        
+        const previouscodes = previousValues['code'] || [];
+        const previouscodeoptions = previousValues['code-option'] || {};
+        const previousoptions = previouscodeoptions[codeInput.value] || [];
+
+        if (previousoptions.length > 0 && previousoptions[previousoptions.length - 1] === 'Hold' && optionInput.value === 'Stop') 
+        {
+          alert('Project Code under Hold. Please release first!!');
+          return;
+        }
+        
+        previouscodes.push(codeInput.value);
+        previousValues['code'] = previouscodes;
+        
+        if (!previouscodeoptions[codeInput.value]) 
+        {
+          previouscodeoptions[codeInput.value] = [];
+        }
+        
+        previouscodeoptions[codeInput.value].push(optionInput.value);
+        previousValues['code-option'] = previouscodeoptions;
+
+
+        xhttp.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNBvOB1CXOI5zZ6NwJYUSOQlkhLAPJfLTF2J5HgVgPpPei0w/formResponse", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("entry.1078477103=" + 
+                    encodeURIComponent(document.getElementById("input-field").value) + 
+                    "&entry.1213033535=" + 
+                    encodeURIComponent(document.querySelector('input[name="entry.1213033535"]:checked').value) + 
+                    "&entry.1540913178=" + 
+                    encodeURIComponent(document.getElementById("dropdown-menu").value));
+        
+
+        alert("Form Submitted!!");
+        document.getElementById("my-form").reset();
+        return false;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="page-content">
+      <header>
+        <h1>SPARKLINE</h1>
+      </header>
+      <form id="my-form">
+        <h2>Quality Assurance</h2>
+        <h3>Select Details: </h3> 
+        <label for="Project Code"> Project Code: </label>
+        <select id="Project Code">
+          <option value="NA"> </option>
+          <option value="Code1">Code1</option>
+          <option value="Code2">Code2</option>
+          <option value="Code3">Code3</option>
+        </select>
+        <br><br>
+        <label for="Comment"> Comment:</label>
+        <input type="text" id="username" name="Comment">
+        <br><br>
+        <button type="submit">OK</button>
+        <button type="submit">NOT OK</button>
+        <br><br>
+        <button type="submit">ReWork</button>
+      </form>
+  </div>
+  </body>
+</html>
