@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sparkline Data Input</title>
+    <style>
+      body 
+      {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        background-color: #f2f2f2;
+      }
+
+      header 
+      {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .page-content 
+      {
+        margin: auto;
+        max-width: 500px;
+        padding: 20px; 
+        background-color: #f0f0f0;
+        border: 1px solid #ccc; 
+        text-align: center;
+      }
+
+      h1 
+      {
+        margin: 0;
+      }
+
+      form 
+      {
+        margin: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-size: 18px;
+      }
+
+      label 
+      {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"] 
+      {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #333;
+        background-color: #f2f2f2;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="radio"] 
+      {
+        margin-right: 10px;
+        align-items: center;
+      }
+
+      button 
+      {
+        padding: 10px 20px;
+        background-color: #ff9900;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+        align-items: center;
+      }
+
+      button:hover 
+      {
+        background-color: #e68a00;
+      }
+    </style>
+    <script>
+
+      function goToPage() 
+      {
+        const selectBox = document.querySelector('input[name="Options"]:checked');
+        const selectedValue = selectBox.value;
+        if (selectBox.value === "L-Angle") 
+        {
+          window.location.replace = "C:/Users/burha/Desktop/Sparkline/L-Angle.html";
+        } 
+        else if (selectBox.value === "Panel") 
+        {
+          window.location.href = "Panel.html";
+        }
+        else if (selectBox.value === "2D") 
+        {
+          window.location.href = "2D.html";
+        }
+        else if (selectBox.value === "3D") 
+        {
+          window.location.href = "3D.html";
+        }
+        else if (selectBox.value === "Finish Weld") 
+        {
+          window.location.href = "Finish Weld.html";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="page-content">
+      <header>
+        <h1>SPARKLINE</h1>
+      </header>
+      <form id="my-form">
+        
+        <label for="Project Code"> Project Code: </label>
+        <select id="Project Code">
+          <option value="NA"> </option>
+          <option value="Code1">Code1</option>
+          <option value="Code2">Code2</option>
+          <option value="Code3">Code3</option>
+        </select>
+        <br><br><br>
+        <label for="Tunnel"> Tunnel: </label>
+        <select id="Tunnel">
+          <option value="NA"> </option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <br><br></br>
+        <label for="Operator"> Operator Name: </label>
+        <select id="Operator">
+          <option value="NA"> </option>
+          <option value="name1">Guddu Sahani</option>
+          <option value="name2">Pramod Gupta</option>
+          <option value="name3">Rahul Kumar</option>
+          <option value="name4">Irfan Ali</option>
+          <option value="name5">Rajesh Pal</option>
+          <option value="name6">Satish Kumar</option>
+          <option value="name7">Rakesh Bharti</option>
+          <option value="name8">Arman Khan</option>
+          <option value="name9">Balwant Yadav</option>
+          <option value="name10">Rajkumar Sharma</option>
+          <option value="name11">Satyendra Yadav</option>
+          <option value="name12">Mahendra Yadav</option>
+          <option value="name13">Dhruv Raj</option>
+        </select>
+        <br><br><br>
+        <label for="option1"> L-Angle:</label>
+        <input type="radio" id="option1" name="Options" value="L-Angle"><br><br>
+
+        <label for="option2"> Panel:</label>
+        <input type="radio" id="option2" name="Options" value="Panel"><br><br>
+
+        <label for="option3"> 2D:</label>
+        <input type="radio" id="option3" name="Options" value="2D"><br><br>
+
+        <label for="option4"> 3D:</label>
+        <input type="radio" id="option4" name="Options" value="3D"><br><br>
+
+        <label for="option5"> Finish Weld:</label>
+        <input type="radio" id="option5" name="Options" value="Finish Weld"><br><br>
+
+        <button onclick="goToPage()">Next</button>
+      </form>
+  </div>
+  </body>
+</html>

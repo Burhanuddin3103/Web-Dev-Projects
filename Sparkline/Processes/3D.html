@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sparkline Data Input</title>
+    <style>
+      body 
+      {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        
+        justify-content: center;
+        align-items: center;
+        height: 90vh;
+        background-color: #f2f2f2;
+      }
+
+      header 
+      {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      .page-content 
+      {
+        margin: auto;
+        max-width: 500px;
+        padding: 20px; 
+        background-color: #f0f0f0;
+        border: 1px solid #ccc; 
+        text-align: center;
+      }
+
+      h1 
+      {
+        margin: 0;
+      }
+
+      form 
+      {
+        margin: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        font-size: 18px;
+      }
+
+      label 
+      {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      input[type="text"] 
+      {
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 20px;
+        font-size: 16px;
+        color: #333;
+        background-color: #f2f2f2;
+        box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="radio"] 
+      {
+        margin-right: 10px;
+      }
+
+      button 
+      {
+        padding: 10px 20px;
+        background-color: #ff9900;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+        align-items: center;
+      }
+
+      button:hover 
+      {
+        background-color: #e68a00;
+      }
+    </style>
+    <script>
+      let previousValues = {};
+      function submitForm() 
+      {
+        var xhttp = new XMLHttpRequest();
+
+        const codeInput = document.getElementById('input-field');
+        const optionInput = document.querySelector('input[name="entry.1213033535"]:checked');
+        
+        const previouscodes = previousValues['code'] || [];
+        const previouscodeoptions = previousValues['code-option'] || {};
+        const previousoptions = previouscodeoptions[codeInput.value] || [];
+
+        if (previousoptions.length > 0 && previousoptions[previousoptions.length - 1] === 'Hold' && optionInput.value === 'Stop') 
+        {
+          alert('Project Code under Hold. Please release first!!');
+          return;
+        }
+        
+        previouscodes.push(codeInput.value);
+        previousValues['code'] = previouscodes;
+        
+        if (!previouscodeoptions[codeInput.value]) 
+        {
+          previouscodeoptions[codeInput.value] = [];
+        }
+        
+        previouscodeoptions[codeInput.value].push(optionInput.value);
+        previousValues['code-option'] = previouscodeoptions;
+
+
+        xhttp.open("POST", "https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNBvOB1CXOI5zZ6NwJYUSOQlkhLAPJfLTF2J5HgVgPpPei0w/formResponse", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("entry.1078477103=" + 
+                    encodeURIComponent(document.getElementById("input-field").value) + 
+                    "&entry.1213033535=" + 
+                    encodeURIComponent(document.querySelector('input[name="entry.1213033535"]:checked').value) + 
+                    "&entry.1540913178=" + 
+                    encodeURIComponent(document.getElementById("dropdown-menu").value));
+        
+
+        alert("Form Submitted!!");
+        document.getElementById("my-form").reset();
+        return false;
+      }
+    </script>
+  </head>
+
+  <body>
+    <div class="page-content">
+      <header>
+        <h1>SPARKLINE</h1>
+      </header>
+      <form id="my-form">
+        <h2>3D</h2>
+        <h3>Select Details: </h3> 
+        <div>
+          <label for="option5"> Start:</label>
+          <input type="radio" id="option5" name="Start" value="Start">
+
+          <label for="option6"> Stop:</label>
+          <input type="radio" id="option6" name="Stop" value="Stop">
+
+          <label for="option6"> Finish:</label>
+          <input type="radio" id="option7" name="Finish" value="Finish">
+        </div>
+        <br>
+        <label for="Shift"> Shift: </label>
+        <select id="Shift">
+          <option value="NA"> </option>
+          <option value="Shift 1">Shift 1</option>
+          <option value="Shift 2">Shift 2</option>
+          <option value="Overtime 1">Overtime 1</option>
+          <option value="Overtime 2">Overtime 2</option>
+        </select>
+        <br><br>
+        <label for="Reason"> Reason for Stop: </label>
+        <select id="Reason">
+          <option value="NA"> </option>
+          <option value="R1">Water</option>
+          <option value="R2">Tiolet</option>
+          <option value="R3">Tea Time</option>
+          <option value="R4">Lunch Time</option>
+          <option value="R5">Shift Over</option>
+          <option value="R6">Setup Time</option>
+          <option value="R4">Material Movement</option>
+          <option value="R8">Consumable Loading</option>
+          <option value="R9">Job Handling Time</option>
+          <option value="R10">Machine Breakdown</option>
+          <option value="R11">Material Not Available</option>
+          <option value="R12">Manpower Not Available</option>
+          <option value="R13">Kaizen</option>
+          <option value="R14">Other</option>
+        </select>
+        <br><br>
+        <button type="submit">Submit</button>
+      </form>
+  </div>
+  </body>
+</html>
